@@ -18,12 +18,12 @@ RUN function Install-Artifact($url, $hash, $to) { `
         Write-Host 'Done.'; `
     }; `
     Install-Artifact `
-        'https://dl.google.com/go/go1.11.5.windows-amd64.zip' `
-        '1c734fe614fa052f44694e993f2d06f24a56b6703ee46fdfb2b9bf277819fe40' `
+        'https://dl.google.com/go/go1.12.windows-amd64.zip' `
+        '880ced1aecef08b3471a84381b6c7e2c0e846b81dd97ecb629b534d941f282bd' `
         '.'; `
     Install-Artifact `
-        'https://github.com/git-for-windows/git/releases/download/v2.20.1.windows.1/MinGit-2.20.1-64-bit.zip' `
-        '02328f37eeefe8d8f5396553ac8f91c98d09e533d49d93c617a4643915a76552' `
+        'https://github.com/git-for-windows/git/releases/download/v2.21.0.windows.1/MinGit-2.21.0-64-bit.zip' `
+        'bd91db55bd95eaa80687df28877e2df8c8858a0266e9c67331cfddba2735f25c' `
         'git';
 RUN ./git/cmd/git config --file git/mingw64/etc/gitconfig core.autocrlf false;
 
