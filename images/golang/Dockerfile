@@ -18,8 +18,8 @@ RUN function Install-Artifact($url, $hash, $to) { `
         Write-Host 'Done.'; `
     }; `
     Install-Artifact `
-        'https://dl.google.com/go/go1.12.windows-amd64.zip' `
-        '880ced1aecef08b3471a84381b6c7e2c0e846b81dd97ecb629b534d941f282bd' `
+        'https://dl.google.com/go/go1.12.1.windows-amd64.zip' `
+        '2f4849b512fffb2cf2028608aa066cc1b79e730fd146c7b89015797162f08ec5' `
         '.'; `
     Install-Artifact `
         'https://github.com/git-for-windows/git/releases/download/v2.21.0.windows.1/MinGit-2.21.0-64-bit.zip' `

@@ -1,5 +1,5 @@
 # escape=`
-FROM golang:1.12 AS builder
+FROM golang:1.12.1 AS builder
 WORKDIR /Users/ContainerUser/go/src/info
 COPY *.go ./
 RUN go build
