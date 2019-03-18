@@ -10,6 +10,7 @@
             (Get-Content -Raw Dockerfile) `
                 -replace 'FROM \$BASEIMAGE',"FROM $_"
         )
+    $title = "graceful-terminating-console-application $_"
 
     $dataPath = 'C:\graceful-terminating-console-application'
     mkdir -Force $dataPath | Out-Null
@@ -32,10 +33,10 @@
     # XXX docker/windows seems to ignore the --time argument...
     docker stop --time 600 graceful-terminating-console-application
 
-    Write-Output 'getting the container logs...'
+    Write-Output "getting the $title container logs..."
     docker logs graceful-terminating-console-application | ForEach-Object {"    $_"}
 
-    Write-Output 'getting the log file...'
+    Write-Output "getting the $title log file..."
     Get-Content "$dataPath\graceful-terminating-console-application-windows.log"
 }
 

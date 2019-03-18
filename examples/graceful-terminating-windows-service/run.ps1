@@ -14,6 +14,7 @@
             (Get-Content -Raw Dockerfile) `
                 -replace 'FROM \$BASEIMAGE',$replacement
         )
+    $title = "graceful-terminating-windows-service $_"
 
     $dataPath = 'C:\graceful-terminating-windows-service'
     mkdir -Force $dataPath | Out-Null
@@ -34,10 +35,10 @@
     Write-Output 'stopping the container...'
     docker stop --time 600 graceful-terminating-windows-service
 
-    Write-Output 'getting the container logs...'
+    Write-Output "getting the $title container logs..."
     docker logs graceful-terminating-windows-service | ForEach-Object {"    $_"}
 
-    Write-Output 'getting the log file...'
+    Write-Output "getting the $title log file..."
     Get-Content "$dataPath\graceful-terminating-windows-service.log"
 }
 
