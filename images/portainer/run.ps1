@@ -1,5 +1,4 @@
 $hostIp = (Get-NetAdapter -Name 'vEthernet (nat)' | Get-NetIPAddress -AddressFamily IPv4).IPAddress
-$dockerHost = "tcp://${hostIp}:2375"
 
 Write-Output 'Running the portainer container in the background...'
 docker `
@@ -8,8 +7,9 @@ docker `
     --rm `
     -d `
     -p 9000:9000 `
-    portainer:1.19.2 `
-        -H $dockerHost
+    -v //./pipe/docker_engine://./pipe/docker_engine `
+    portainer:1.20.1 `
+        -H npipe:////./pipe/docker_engine
 
 #$containerIp = docker inspect --format '{{.NetworkSettings.Networks.nat.IPAddress}}' portainer
 $containerIp = 'localhost' # NB on Windows 2019 we can use localhost instead of the container IP.
