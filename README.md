@@ -3,7 +3,7 @@ This is a Docker on Windows Server 2019 (1809) Vagrant environment for playing w
 
 # Usage
 
-Install the [Base Windows Server Insider 2019 Box](https://github.com/rgl/windows-2016-vagrant).
+Install the [Base Windows Server 2019 Box](https://github.com/rgl/windows-2016-vagrant).
 
 Install the required plugins:
 
@@ -61,20 +61,20 @@ This environment builds and uses the following images:
 
 ```
 REPOSITORY                                 TAG                 IMAGE ID            CREATED             SIZE
-busybox-info                               latest              448e89529ac5        36 minutes ago      245MB
-go-info                                    latest              85b79523e243        36 minutes ago      246MB
-csharp-info                                latest              8320872d1203        36 minutes ago      313MB
-powershell-info                            latest              d041231eca90        41 minutes ago      396MB
-batch-info                                 latest              be8be2550fc5        42 minutes ago      244MB
-portainer                                  1.20.1              d24dfee70a61        42 minutes ago      295MB
-busybox                                    latest              5d3ec7426b73        43 minutes ago      244MB
-golang                                     1.12.1              e6f82f20e40d        43 minutes ago      797MB
-dotnet-sdk                                 2.1.505             e07a9c3c0a67        About an hour ago   711MB
-dotnet-runtime                             2.1.9               0f60a2600784        About an hour ago   313MB
-powershell                                 6.2.0               0006ec184baa        About an hour ago   392MB
-mcr.microsoft.com/windows/nanoserver       1809                4702b277b15f        2 weeks ago         244MB
-mcr.microsoft.com/windows/servercore       1809                1206cbf9524c        2 weeks ago         5GB
-mcr.microsoft.com/windows                  1809                05d3297bfa19        4 months ago        9.9GB
+busybox-info                               latest              2b78753f7cf4        About an hour ago   251MB
+go-info                                    latest              54348d98734c        About an hour ago   253MB
+csharp-info                                latest              e6ef24dd8eb9        About an hour ago   320MB
+powershell-info                            latest              13ad18d65add        About an hour ago   403MB
+batch-info                                 latest              6ce5b2236459        About an hour ago   250MB
+portainer                                  1.20.2              5d5153fe940d        About an hour ago   301MB
+busybox                                    latest              db9317ea950f        About an hour ago   251MB
+golang                                     1.12.5              41bd06a4c751        About an hour ago   803MB
+dotnet-sdk                                 2.1.700             2dbcc173e577        About an hour ago   721MB
+dotnet-runtime                             2.1.11              4c5611104ad4        About an hour ago   320MB
+powershell                                 6.2.1               127aa56aabb3        About an hour ago   399MB
+mcr.microsoft.com/windows/nanoserver       1809                bcdfac372cdf        6 days ago          250MB
+mcr.microsoft.com/windows/servercore       1809                43c05724e30b        6 days ago          4.56GB
+mcr.microsoft.com/windows                  1809                1e9ac19b1d2f        6 days ago          13.1GB
 ```
 
 # Troubleshoot
