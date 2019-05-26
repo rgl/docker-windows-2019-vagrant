@@ -4,8 +4,8 @@
 FROM powershell:6.2.1 as builder
 SHELL ["pwsh.exe", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 RUN cd $env:TMP; `
-    $url = 'https://download.visualstudio.microsoft.com/download/pr/dd326e41-9407-44e0-823d-e34121e9ae84/1d7668e882d0a050a8e3d0abae4fd6c8/dotnet-runtime-2.1.9-win-x64.zip'; `
-    $sha512 = '31a94a4576ba0c7acc18a6160d2f3bdd65d52883f8ddeec4244b91f58834c3cce396a5040930cb5f3b091e280e79906aef575eedee4a8a134343c9a24a63d1ae'; `
+    $url = 'https://download.visualstudio.microsoft.com/download/pr/e2abeb77-02c9-44e8-ac97-007610b73a18/da40662a3333b8aea5a5cd7bcdd2cc97/dotnet-runtime-2.1.11-win-x64.zip'; `
+    $sha512 = 'b5118c4a3532daba32aeab686ec3f21779ad28cfb994446ac02aa1902faddb8b67d383d2b516d4b02538a653e03bd97c4b817c4ffde6b156ed6bcb8d2e7dfffb'; `
     $filename = Split-Path -Leaf $url; `
     Write-Host ('Downloading {0}...' -f $url); `
     Invoke-WebRequest -Uri $url -OutFile $filename; `
