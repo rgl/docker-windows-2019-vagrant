@@ -1,5 +1,5 @@
 # escape=`
-FROM powershell:6.2.0 AS builder
+FROM powershell:6.2.1 AS builder
 SHELL ["pwsh.exe", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 WORKDIR C:/Windows/TEMP
 RUN function Install-Artifact($url, $hash, $to) { `
@@ -27,7 +27,7 @@ RUN function Install-Artifact($url, $hash, $to) { `
         'git';
 RUN ./git/cmd/git config --file git/mingw64/etc/gitconfig core.autocrlf false;
 
-FROM powershell:6.2.0
+FROM powershell:6.2.1
 COPY --from=builder C:/Windows/TEMP/go C:/go
 COPY --from=builder C:/Windows/TEMP/git C:/git
 ENV PATH='C:\Windows\System32;C:\Windows;C:\Program Files\PowerShell;C:\go\bin;C:\git\cmd'

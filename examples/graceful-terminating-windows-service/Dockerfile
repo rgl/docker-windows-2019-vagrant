@@ -1,5 +1,5 @@
 # escape=`
-FROM powershell:6.2.0 as builder
+FROM powershell:6.2.1 as builder
 SHELL ["pwsh.exe", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 RUN cd $env:TMP; `
     $url = 'https://github.com/rgl/graceful-terminating-windows-service/releases/download/v0.2.0/graceful-terminating-windows-service.zip'; `
