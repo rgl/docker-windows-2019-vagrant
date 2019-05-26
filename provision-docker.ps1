@@ -1,12 +1,12 @@
 # see https://docs.microsoft.com/en-us/virtualization/windowscontainers/manage-docker/configure-docker-daemon
 # see https://docs.docker.com/engine/installation/linux/docker-ce/binaries/#install-server-and-client-binaries-on-windows
-# see https://github.com/docker/docker-ce/releases/tag/v18.09.4
+# see https://github.com/docker/docker-ce/releases/tag/v18.09.5
 
 # download install the docker binaries.
-$archiveVersion = '18.09.4'
+$archiveVersion = '18.09.5'
 $archiveName = "docker-$archiveVersion.zip"
 $archiveUrl = "https://github.com/rgl/docker-ce-windows-binaries-vagrant/releases/download/v$archiveVersion/$archiveName"
-$archiveHash = 'a19d4b11995946f90efb6049bace988b947af16d5975e8b77913ae94e0562582'
+$archiveHash = '159871f51e5aa22be2f74108b75cefcccabaa47e3fbe28961d44b0a58f13a93b'
 $archivePath = "$env:TEMP\$archiveName"
 Write-Host "Installing docker $archiveVersion..."
 (New-Object System.Net.WebClient).DownloadFile($archiveUrl, $archivePath)
@@ -28,12 +28,23 @@ $env:PATH += ";$env:ProgramFiles\docker"
 # install the docker service.
 dockerd --register-service
 
+# add group that will be allowed to use the docker engine named pipe.
+New-LocalGroup `
+    -Name docker-users `
+    -Description 'Docker engine users' `
+    | Out-Null
+
 # configure docker through a configuration file.
 # see https://docs.docker.com/engine/reference/commandline/dockerd/#windows-configuration-file
 $config = @{
     'experimental' = $false
     'debug' = $false
     'labels' = @('os=windows')
+    'exec-opts' = @('isolation=process')
+    # allow users in the following groups to use the docker engine named pipe.
+    # see https://github.com/moby/moby/commit/0906195fbbd6f379c163b80f23e4c5a60bcfc5f0
+    # see https://github.com/moby/moby/blob/8e610b2b55bfd1bfa9436ab110d311f5e8a74dcb/daemon/listeners/listeners_windows.go#L25
+    'group' = 'docker-users'
     'hosts' = @(
         'tcp://0.0.0.0:2375',
         'npipe:////./pipe/docker_engine'
@@ -85,6 +96,16 @@ docker version
 
 Write-Title 'docker info'
 docker info
+
+Write-Title 'docker named pipe \\.\pipe\docker_engine ACL'
+# NB you can get the current list of named pipes with:
+#       [System.IO.Directory]::GetFiles('\\.\pipe\') | Sort-Object
+# NB you can manually change the named pipe ACL with:
+#       Add-LocalGroupMember -Group docker-users -Member jenkins
+#       $ac = [System.IO.Directory]::GetAccessControl('\\.\pipe\docker_engine')
+#       $ac.AddAccessRule((New-Object System.Security.AccessControl.FileSystemAccessRule 'docker-users','Read,Write,Synchronize','Allow'))
+#       [System.IO.Directory]::SetAccessControl('\\.\pipe\docker_engine', $ac)
+[System.IO.Directory]::GetAccessControl("\\.\pipe\docker_engine") | Format-Table -Wrap
 
 # see https://docs.docker.com/engine/api/v1.32/
 # see https://github.com/moby/moby/tree/master/api
