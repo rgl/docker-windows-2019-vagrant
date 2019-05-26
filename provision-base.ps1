@@ -37,3 +37,15 @@ Set-ItemProperty -Path 'HKCU:Control Panel\Colors' -Name Background -Value '30 3
 
 # replace notepad with notepad2.
 choco install -y notepad2
+
+# install useful tools.
+choco install -y processhacker
+choco install -y firefox --params 'l=en-US'
+choco install -y SetDefaultBrowser
+SetDefaultBrowser @((SetDefaultBrowser | Where-Object {$_ -like 'HKLM Firefox-*'}) -split ' ')
+
+# install sortcuts.
+[IO.File]::WriteAllText("$env:USERPROFILE\Desktop\Portainer.url", @"
+[InternetShortcut]
+URL=http://localhost:9000
+"@)
