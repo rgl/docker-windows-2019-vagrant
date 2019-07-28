@@ -1,5 +1,5 @@
 @(
-    'powershell:6.2.1' # NB this is based on 'mcr.microsoft.com/windows/nanoserver:1809'
+    'powershell:6.2.2' # NB this is based on 'mcr.microsoft.com/windows/nanoserver:1809'
     'mcr.microsoft.com/windows/servercore:1809'
     'mcr.microsoft.com/windows:1809'
 ) | ForEach-Object {

@@ -1,5 +1,5 @@
 # escape=`
-FROM powershell:6.2.1 as builder
+FROM powershell:6.2.2 as builder
 SHELL ["pwsh.exe", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 RUN cd $env:TMP; `
     $url = 'https://frippery.org/files/busybox/busybox-w64-FRP-3128-g241d4d4ac.exe'; `

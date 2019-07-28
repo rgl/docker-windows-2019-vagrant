@@ -1,7 +1,7 @@
 # escape=`
 # see https://dotnet.microsoft.com/download/dotnet-core/2.1
 # see https://github.com/dotnet/core/blob/master/release-notes/2.1/2.1.700-SDK/2.1.700-SDK-download.md
-FROM powershell:6.2.1 as builder
+FROM powershell:6.2.2 as builder
 SHELL ["pwsh.exe", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 RUN cd $env:TMP; `
     $url = 'https://download.visualstudio.microsoft.com/download/pr/576e0421-9f66-4849-9abf-3ecc1447d4c3/a2903a5f7371df668f0d8f7f33938a0b/dotnet-sdk-2.1.700-win-x64.zip'; `
@@ -19,7 +19,7 @@ RUN cd $env:TMP; `
     Write-Host 'Removing...'; `
     Remove-Item $filename -Force;
 
-FROM powershell:6.2.1
+FROM powershell:6.2.2
 COPY --from=builder ["C:/Program Files/dotnet", "C:/Program Files/dotnet"]
 ENV PATH='C:\Windows\System32;C:\Windows;C:\Program Files\PowerShell;C:\Program Files\dotnet' `
     DOTNET_CLI_TELEMETRY_OPTOUT='1'
