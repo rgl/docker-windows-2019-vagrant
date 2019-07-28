@@ -1,5 +1,5 @@
 # escape=`
-FROM powershell:6.2.1 AS builder
+FROM powershell:6.2.2 AS builder
 SHELL ["pwsh.exe", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 WORKDIR C:/Windows/TEMP
 RUN function Install-Artifact($url, $hash, $to) { `
@@ -18,12 +18,12 @@ RUN function Install-Artifact($url, $hash, $to) { `
         Write-Host 'Done.'; `
     }; `
     Install-Artifact `
-        'https://dl.google.com/go/go1.12.5.windows-amd64.zip' `
-        'ccb694279aab39fe0e70629261f13b0307ee40d2d5e1138ed94738023ab04baa' `
+        'https://dl.google.com/go/go1.12.7.windows-amd64.zip' `
+        '502712c0e29edc6b9cda6fa5e4b6ff9b36e27d225373baead8708c9634aa8e50' `
         '.'; `
     Install-Artifact `
-        'https://github.com/git-for-windows/git/releases/download/v2.21.0.windows.1/MinGit-2.21.0-64-bit.zip' `
-        'bd91db55bd95eaa80687df28877e2df8c8858a0266e9c67331cfddba2735f25c' `
+        'https://github.com/git-for-windows/git/releases/download/v2.22.0.windows.1/MinGit-2.22.0-64-bit.zip' `
+        '308ce95b7de5792bed9d56e1af5d2053052ea6347ea0021f74070056684ce3ee' `
         'git';
 RUN ./git/cmd/git config --file git/mingw64/etc/gitconfig core.autocrlf false;
 
