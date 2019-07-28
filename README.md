@@ -61,20 +61,20 @@ This environment builds and uses the following images:
 
 ```
 REPOSITORY                                 TAG                 IMAGE ID            CREATED             SIZE
-busybox-info                               latest              2b78753f7cf4        About an hour ago   251MB
-go-info                                    latest              54348d98734c        About an hour ago   253MB
-csharp-info                                latest              e6ef24dd8eb9        About an hour ago   320MB
-powershell-info                            latest              13ad18d65add        About an hour ago   403MB
-batch-info                                 latest              6ce5b2236459        About an hour ago   250MB
-portainer                                  1.20.2              5d5153fe940d        About an hour ago   301MB
-busybox                                    latest              db9317ea950f        About an hour ago   251MB
-golang                                     1.12.5              41bd06a4c751        About an hour ago   803MB
-dotnet-sdk                                 2.1.700             2dbcc173e577        About an hour ago   721MB
-dotnet-runtime                             2.1.11              4c5611104ad4        About an hour ago   320MB
-powershell                                 6.2.1               127aa56aabb3        About an hour ago   399MB
-mcr.microsoft.com/windows/nanoserver       1809                bcdfac372cdf        6 days ago          250MB
-mcr.microsoft.com/windows/servercore       1809                43c05724e30b        6 days ago          4.56GB
-mcr.microsoft.com/windows                  1809                1e9ac19b1d2f        6 days ago          13.1GB
+busybox-info                               latest              30f9a7bb9a59        40 minutes ago      251MB
+go-info                                    latest              a779a6759407        40 minutes ago      253MB
+csharp-info                                latest              1b315552d820        41 minutes ago      320MB
+powershell-info                            latest              20996198c908        42 minutes ago      403MB
+batch-info                                 latest              70249b6ac0f0        42 minutes ago      251MB
+portainer                                  1.21.0              7519e4652ada        43 minutes ago      303MB
+busybox                                    latest              14c6c6dc4a1e        44 minutes ago      251MB
+golang                                     1.12.7              a71f0992ff7e        44 minutes ago      806MB
+dotnet-sdk                                 2.1.801             d77dc943182d        48 minutes ago      1.81GB
+dotnet-runtime                             2.1.12              b263e211ed5b        53 minutes ago      320MB
+powershell                                 6.2.2               e822f0e826d7        54 minutes ago      400MB
+mcr.microsoft.com/windows/nanoserver       1809                cf751d69394a        2 weeks ago         250MB
+mcr.microsoft.com/windows/servercore       1809                3a516dd45ed8        2 weeks ago         4.65GB
+mcr.microsoft.com/windows                  1809                f740e948f92b        2 weeks ago         11.6GB
 ```
 
 # Troubleshoot
