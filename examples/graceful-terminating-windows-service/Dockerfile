@@ -1,7 +1,7 @@
 # escape=`
 FROM powershell:6.2.2 as builder
 SHELL ["pwsh.exe", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
-RUN cd $env:TMP; `
+RUN mkdir C:\build | Set-Location; `
     $url = 'https://github.com/rgl/graceful-terminating-windows-service/releases/download/v0.2.0/graceful-terminating-windows-service.zip'; `
     $sha256 = '6678b8fb331991433aa7c70c21d1162229644426fdacbdbe89977259652e93ef'; `
     Write-Host ('Downloading graceful-terminating-windows-service from {0}...' -f $url); `
@@ -17,12 +17,12 @@ RUN cd $env:TMP; `
     Remove-Item graceful-terminating-windows-service.zip;
 
 FROM $BASEIMAGE
-COPY --from=builder /Windows/TEMP/graceful-terminating-windows-service.exe /app/
+RUN mkdir C:\app,C:\host | Out-Null
+COPY --from=builder C:\build\graceful-terminating-windows-service.exe C:\app
 WORKDIR /app
 COPY install.ps1 ./
 COPY entrypoint.ps1 ./
 USER ContainerAdministrator
 RUN ./install.ps1
-RUN mkdir c:/host | Out-Null
 VOLUME ["c:/host"]
 ENTRYPOINT .\entrypoint.ps1

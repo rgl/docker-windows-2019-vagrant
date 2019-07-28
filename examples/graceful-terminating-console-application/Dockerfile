@@ -1,7 +1,7 @@
 # escape=`
 FROM powershell:6.2.2 as builder
 SHELL ["pwsh.exe", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
-RUN cd $env:TMP; `
+RUN mkdir C:\build | Set-Location; `
     $url = 'https://github.com/rgl/graceful-terminating-console-application-windows/releases/download/v0.4.0/graceful-terminating-console-application-windows.zip'; `
     $sha256 = 'f4ed0d2e05a9689d29f56ac084d9b49f53894250c24f13c9944903ed9f1342e0'; `
     Write-Host ('Downloading graceful-terminating-console-application-windows from {0}...' -f $url); `
@@ -17,8 +17,8 @@ RUN cd $env:TMP; `
     Remove-Item graceful-terminating-console-application-windows.zip;
 
 FROM $BASEIMAGE
-COPY --from=builder /Windows/TEMP/graceful-terminating-console-application-windows.exe /app/
-RUN mkdir c:\host
-VOLUME ["c:/host"]
-WORKDIR /host
+RUN mkdir C:\app C:\host
+COPY --from=builder C:\build\graceful-terminating-console-application-windows.exe C:\app
+VOLUME ["C:/host"]
+WORKDIR C:/host
 ENTRYPOINT ["C:/app/graceful-terminating-console-application-windows.exe", "600"]
