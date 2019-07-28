@@ -1,11 +1,11 @@
 # escape=`
 # see https://dotnet.microsoft.com/download/dotnet-core/2.1
-# see https://github.com/dotnet/core/blob/master/release-notes/2.1/2.1.700-SDK/2.1.700-SDK-download.md
+# see https://github.com/dotnet/core/blob/master/release-notes/2.1/2.1.12/2.1.801-sdk-download.md
 FROM powershell:6.2.2 as builder
 SHELL ["pwsh.exe", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 RUN cd $env:TMP; `
-    $url = 'https://download.visualstudio.microsoft.com/download/pr/576e0421-9f66-4849-9abf-3ecc1447d4c3/a2903a5f7371df668f0d8f7f33938a0b/dotnet-sdk-2.1.700-win-x64.zip'; `
-    $sha512 = 'e3258e6a33cce5bcae6f6d00cff39bc5f2bdb522deca855c97975ddd60c5db2f90cbd2e2cc2022533a65076307756bac79f93bf156da14aafffa0bd0ae1f0919'; `
+    $url = 'https://download.visualstudio.microsoft.com/download/pr/a3e45ac9-c70d-4526-b05d-1fe621b146e1/55cce526bf94100d95db61fcf65cc182/dotnet-sdk-2.1.801-win-x64.zip'; `
+    $sha512 = '60d4a47a51ff542329a016acc17ab7e2982297242f7943f0346a03d3744808ebb89bdb7083fddeafcdbb9c3616aec2190464965193f9bac8d95e8be9042359cb'; `
     $filename = Split-Path -Leaf $url; `
     Write-Host ('Downloading {0}...' -f $url); `
     Invoke-WebRequest -Uri $url -OutFile $filename; `
@@ -23,3 +23,5 @@ FROM powershell:6.2.2
 COPY --from=builder ["C:/Program Files/dotnet", "C:/Program Files/dotnet"]
 ENV PATH='C:\Windows\System32;C:\Windows;C:\Program Files\PowerShell;C:\Program Files\dotnet' `
     DOTNET_CLI_TELEMETRY_OPTOUT='1'
+# bootstrap the sdk.
+RUN dotnet new

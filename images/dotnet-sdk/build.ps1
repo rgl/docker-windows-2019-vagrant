@@ -1,5 +1,5 @@
 Write-Output 'building the dotnet-sdk image...'
-$tag = 'dotnet-sdk:2.1.700'
+$tag = 'dotnet-sdk:2.1.801'
 time {docker build -t $tag .}
 docker image ls $tag
 docker history $tag
