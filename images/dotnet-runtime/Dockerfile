@@ -1,11 +1,11 @@
 # escape=`
 # see https://dotnet.microsoft.com/download/dotnet-core/2.1
-# see https://github.com/dotnet/core/blob/master/release-notes/2.1/2.1.12/2.1.801-sdk-download.md
+# see https://github.com/dotnet/core/blob/master/release-notes/2.1/2.1.13/2.1.802-download.md
 FROM powershell:6.2.3 as builder
 SHELL ["pwsh.exe", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 RUN cd $env:TMP; `
-    $url = 'https://download.visualstudio.microsoft.com/download/pr/dcf8c839-2ffd-4677-9b29-4af9c44e170e/59de767034f66051fe6eab61fa757be1/dotnet-runtime-2.1.12-win-x64.zip'; `
-    $sha512 = 'ce3f8abd92997645035b7655e9ae61e2023ffc9848b250945e140bfd05c26beed35982e8f5a5d263bc576112c6f4d3e82b0bea45bd07d5331f290c1d8d2eb9ce'; `
+    $url = 'https://download.visualstudio.microsoft.com/download/pr/6c077613-cbf5-4c3c-a32b-d1d20db9c779/b314a6cd36cde83337ebb2888c905eb2/dotnet-runtime-2.1.13-win-x64.zip'; `
+    $sha512 = '4b5caf6eab996f526684ec32153c19a5ee6b670b984c0cdc98c52b1577831d2a6952c0be8c1d65b6ea941b984ba60915dd1327d94568f2dd5c44b2d7b92bb334'; `
     $filename = Split-Path -Leaf $url; `
     Write-Host ('Downloading {0}...' -f $url); `
     Invoke-WebRequest -Uri $url -OutFile $filename; `
