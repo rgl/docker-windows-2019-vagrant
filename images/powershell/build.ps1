@@ -1,5 +1,5 @@
-$version = '6.2.2'
-$sha256 = '777e747dda5b684e8b05d720330fb5efdf3d4939f718d17446f33a0471bf6092'
+$version = '6.2.3'
+$sha256 = 'af171ed197b167e2630044dba6344af8b291e8646f7276b63f1d84c166a41d33'
 $url = "https://github.com/PowerShell/PowerShell/releases/download/v$version/PowerShell-$version-win-x64.zip"
 $filename = "$PWD\$(Split-Path -Leaf $url)"
 

@@ -1,7 +1,7 @@
 # escape=`
 # see https://dotnet.microsoft.com/download/dotnet-core/2.1
 # see https://github.com/dotnet/core/blob/master/release-notes/2.1/2.1.12/2.1.801-sdk-download.md
-FROM powershell:6.2.2 as builder
+FROM powershell:6.2.3 as builder
 SHELL ["pwsh.exe", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 RUN cd $env:TMP; `
     $url = 'https://download.visualstudio.microsoft.com/download/pr/dcf8c839-2ffd-4677-9b29-4af9c44e170e/59de767034f66051fe6eab61fa757be1/dotnet-runtime-2.1.12-win-x64.zip'; `
