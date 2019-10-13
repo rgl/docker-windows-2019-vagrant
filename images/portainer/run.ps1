@@ -8,7 +8,7 @@ docker `
     -d `
     -v //./pipe/docker_engine://./pipe/docker_engine `
     -p 9000:9000 `
-    portainer:1.21.0 `
+    portainer:1.22.1 `
         -H npipe:////./pipe/docker_engine
 
 $url = 'http://localhost:9000'

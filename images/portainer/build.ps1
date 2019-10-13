@@ -1,5 +1,5 @@
 Write-Output 'building the portainer image...'
-$tag = 'portainer:1.21.0'
+$tag = 'portainer:1.22.1'
 time {docker build -t $tag .}
 docker image ls $tag
 docker history $tag
