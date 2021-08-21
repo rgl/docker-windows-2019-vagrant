@@ -25,9 +25,6 @@ Vagrant.configure("2") do |config|
   config.vm.provision "reload"
   config.vm.provision "shell", path: "ps.ps1", args: "provision-chocolatey.ps1"
   config.vm.provision "shell", path: "ps.ps1", args: "provision-base.ps1"
-  # NB admin-center seems to re-configure the network and drop the vagrant network connection...
-  #    which makes the vagrant up fail, so until a solution is found, this is disabled.
-  #config.vm.provision "shell", path: "ps.ps1", args: "provision-admin-center.ps1"
   config.vm.provision "shell", path: "ps.ps1", args: "provision-docker.ps1"
   config.vm.provision "shell", path: "ps.ps1", args: "provision-docker-reg.ps1"
   config.vm.provision "shell", path: "ps.ps1", args: "images/powershell/build.ps1"
