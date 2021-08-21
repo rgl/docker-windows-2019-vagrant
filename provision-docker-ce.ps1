@@ -1,13 +1,13 @@
 # see https://docs.microsoft.com/en-us/virtualization/windowscontainers/manage-docker/configure-docker-daemon
 # see https://docs.docker.com/engine/installation/linux/docker-ce/binaries/#install-server-and-client-binaries-on-windows
-# see https://github.com/docker/docker-ce/releases/tag/v19.03.3
-# see https://github.com/rgl/docker-ce-windows-binaries-vagrant/releases/tag/v19.03.3
+# see https://github.com/moby/moby/releases/tag/v20.10.8
+# see https://github.com/rgl/docker-ce-windows-binaries-vagrant/releases/tag/v20.10.8
 
 # download install the docker binaries.
-$archiveVersion = '19.03.3'
+$archiveVersion = '20.10.8'
 $archiveName = "docker-$archiveVersion.zip"
 $archiveUrl = "https://github.com/rgl/docker-ce-windows-binaries-vagrant/releases/download/v$archiveVersion/$archiveName"
-$archiveHash = '06539e5bf2333ec37d0ce412f008b2dadaf481dc96b1959a06a4e2fcc084205c'
+$archiveHash = '5840fb09ef84fe6d99790a5e2dd3669b86731963e71bd6d905852ec8abd18b7c'
 $archivePath = "$env:TEMP\$archiveName"
 Write-Host "Installing docker $archiveVersion..."
 (New-Object System.Net.WebClient).DownloadFile($archiveUrl, $archivePath)
@@ -52,22 +52,10 @@ $config = @{
     )
 }
 mkdir -Force "$env:ProgramData\docker\config" | Out-Null
-Set-Content -Encoding ascii "$env:ProgramData\docker\config\daemon.json" ($config | ConvertTo-Json)
+Set-Content -Encoding ascii "$env:ProgramData\docker\config\daemon.json" ($config | ConvertTo-Json -Depth 100)
 
 Write-Host 'Starting docker...'
 Start-Service docker
-
-# see https://blogs.technet.microsoft.com/virtualization/2018/10/01/incoming-tag-changes-for-containers-in-windows-server-2019/
-# see https://hub.docker.com/_/microsoft-windows-nanoserver
-# see https://hub.docker.com/_/microsoft-windows-servercore
-# see https://hub.docker.com/_/microsoft-windowsfamily-windows
-Write-Host 'Pulling base image...'
-docker pull mcr.microsoft.com/windows/nanoserver:1809
-#docker pull mcr.microsoft.com/windows/servercore:1809
-#docker pull mcr.microsoft.com/windows/servercore:ltsc2019
-#docker pull mcr.microsoft.com/windows:1809
-#docker pull microsoft/dotnet:2.1-sdk-nanoserver-1809
-#docker pull microsoft/dotnet:2.1-aspnetcore-runtime-nanoserver-1809
 
 Write-Host 'Creating the firewall rule to allow inbound TCP/IP access to the Docker Engine port 2375...'
 New-NetFirewallRule `
@@ -108,7 +96,7 @@ Write-Title 'docker named pipe \\.\pipe\docker_engine ACL'
 #       [System.IO.Directory]::SetAccessControl('\\.\pipe\docker_engine', $ac)
 [System.IO.Directory]::GetAccessControl("\\.\pipe\docker_engine") | Format-Table -Wrap
 
-# see https://docs.docker.com/engine/api/v1.40/
+# see https://docs.docker.com/engine/api/v1.41/
 # see https://github.com/moby/moby/tree/master/api
 Write-Title 'docker info (obtained from http://localhost:2375/info)'
 $infoResponse = Invoke-WebRequest 'http://localhost:2375/info' -UseBasicParsing
