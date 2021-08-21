@@ -21,8 +21,6 @@ At the end of the provision the [examples](examples/) are run.
 
 The Docker Engine API endpoint is available at http://10.0.0.3:2375.
 
-[Portainer](https://portainer.io/) is available at http://10.0.0.3:9000.
-
 [Windows Admin Center](https://docs.microsoft.com/en-us/windows-server/manage/windows-admin-center/overview) is available at https://10.0.0.3:8443.
 
 # Graceful Container Shutdown
@@ -66,7 +64,6 @@ go-info                                    latest              5860ba0167cd     
 csharp-info                                latest              8e0b99ef52c3        44 minutes ago      319MB
 powershell-info                            latest              23e295c5ccb9        45 minutes ago      402MB
 batch-info                                 latest              98b9a46ac0a1        45 minutes ago      251MB
-portainer                                  1.22.1              597d9feb68bd        46 minutes ago      311MB
 busybox                                    latest              a138e19e43c4        46 minutes ago      251MB
 golang                                     1.13.1              505c1dac58c8        47 minutes ago      795MB
 dotnet-sdk                                 2.1.802             ee4c934c874a        51 minutes ago      1.81GB
