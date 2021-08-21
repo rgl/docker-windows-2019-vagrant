@@ -35,8 +35,8 @@ New-Item -Path HKCU:Software\Microsoft\Windows\CurrentVersion\Explorer\CabinetSt
 # set the desktop background.
 Set-ItemProperty -Path 'HKCU:Control Panel\Colors' -Name Background -Value '30 30 30'
 
-# replace notepad with notepad2.
-choco install -y notepad2
+# replace notepad with notepad3.
+choco install -y notepad3
 
 # install useful tools.
 choco install -y processhacker
