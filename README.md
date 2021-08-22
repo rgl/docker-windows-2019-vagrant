@@ -1,9 +1,10 @@
-This is a Docker on Windows Server 2019 (1809) Vagrant environment for playing with Windows containers.
+# About
 
+This is a Docker on Windows Server 2019 (1809) Vagrant environment for playing with Windows containers.
 
 # Usage
 
-Install the [Base Windows Server 2019 Box](https://github.com/rgl/windows-2016-vagrant).
+Install the [Base Windows Server 2019 Box](https://github.com/rgl/windows-vagrant).
 
 Install the required plugins:
 
@@ -49,8 +50,8 @@ You can launch these example containers from host as:
 
 ```bash
 vagrant execute --sudo -c '/vagrant/ps.ps1 examples/graceful-terminating-console-application/run.ps1'
-vagrant execute --sudo -c '/vagrant/ps.ps1 examples/graceful-terminating-gui-application/run.ps1'
 vagrant execute --sudo -c '/vagrant/ps.ps1 examples/graceful-terminating-windows-service/run.ps1'
+vagrant execute --sudo -c '/vagrant/ps.ps1 examples/graceful-terminating-gui-application/run.ps1'
 ```
 
 # Docker images
@@ -58,20 +59,20 @@ vagrant execute --sudo -c '/vagrant/ps.ps1 examples/graceful-terminating-windows
 This environment builds and uses the following images:
 
 ```
-REPOSITORY                                 TAG                 IMAGE ID            CREATED             SIZE
-busybox-info                               latest              595214265fd7        43 minutes ago      251MB
-go-info                                    latest              5860ba0167cd        43 minutes ago      253MB
-csharp-info                                latest              8e0b99ef52c3        44 minutes ago      319MB
-powershell-info                            latest              23e295c5ccb9        45 minutes ago      402MB
-batch-info                                 latest              98b9a46ac0a1        45 minutes ago      251MB
-busybox                                    latest              a138e19e43c4        46 minutes ago      251MB
-golang                                     1.13.1              505c1dac58c8        47 minutes ago      795MB
-dotnet-sdk                                 2.1.802             ee4c934c874a        51 minutes ago      1.81GB
-dotnet-runtime                             2.1.13              b48b75a3cc2b        57 minutes ago      319MB
-powershell                                 6.2.3               2f65028520a0        57 minutes ago      398MB
-mcr.microsoft.com/windows/nanoserver       1809                8a09fa9e06cd        4 days ago          250MB
-mcr.microsoft.com/windows/servercore       1809                8392a5f2ef18        4 days ago          4.79GB
-mcr.microsoft.com/windows                  1809                57519a5da87b        4 days ago          11.9GB
+REPOSITORY                                 TAG                     IMAGE ID       CREATED             SIZE
+busybox-info                               latest                  336a4278b638   59 minutes ago      258MB
+go-info                                    latest                  3be0b24aab1a   59 minutes ago      259MB
+csharp-info                                latest                  fe1915293866   59 minutes ago      329MB
+powershell-info                            latest                  5d26f5f44c57   About an hour ago   517MB
+batch-info                                 latest                  abacf01de2cf   About an hour ago   257MB
+busybox                                    latest                  232db8dcfdb7   About an hour ago   258MB
+golang                                     1.17.0                  51ee2ad1638c   About an hour ago   742MB
+mcr.microsoft.com/powershell               7.1.4-nanoserver-1809   b0d64fe83110   3 days ago          513MB
+mcr.microsoft.com/dotnet/sdk               6.0-nanoserver-1809     27b657c80c01   11 days ago         967MB
+mcr.microsoft.com/dotnet/runtime           6.0-nanoserver-1809     35e027807a25   11 days ago         329MB
+mcr.microsoft.com/windows                  1809                    53dae50cf85b   2 weeks ago         15GB
+mcr.microsoft.com/windows/servercore       1809                    ae32d0871644   2 weeks ago         5.7GB
+mcr.microsoft.com/windows/nanoserver       1809                    8572826a0d1a   2 weeks ago         257MB
 ```
 
 # Troubleshoot

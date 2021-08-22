@@ -1,6 +1,11 @@
 Write-Output 'building the busybox image...'
 $tag = 'busybox'
-time {docker build -t $tag .}
+time {
+    docker build `
+        --build-arg "WINDOWS_NANOSERVER_IMAGE=$((Get-WindowsContainers).nanoserver)" `
+        --build-arg "POWERSHELL_IMAGE=$((Get-WindowsContainers).powershellNanoserver)" `
+        -t $tag .
+}
 docker image ls $tag
 docker history $tag
 Pop-Location

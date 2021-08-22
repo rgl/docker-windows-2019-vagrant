@@ -1,6 +1,11 @@
 Write-Output 'building the golang image...'
-$tag = 'golang:1.13.1'
-time {docker build -t $tag .}
+$tag = 'golang:1.17.0'
+time {
+    docker build `
+        --build-arg "WINDOWS_NANOSERVER_IMAGE=$((Get-WindowsContainers).nanoserver)" `
+        --build-arg "POWERSHELL_IMAGE=$((Get-WindowsContainers).powershellNanoserver)" `
+        -t $tag .
+}
 docker image ls $tag
 docker history $tag
 Pop-Location

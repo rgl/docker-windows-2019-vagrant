@@ -1,5 +1,6 @@
 # escape=`
-FROM mcr.microsoft.com/windows/nanoserver:1809
+ARG WINDOWS_NANOSERVER_IMAGE
+FROM ${WINDOWS_NANOSERVER_IMAGE}
 WORKDIR /app
 COPY *.bat ./
 ENTRYPOINT info.bat

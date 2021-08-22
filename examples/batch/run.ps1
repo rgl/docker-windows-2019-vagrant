@@ -1,7 +1,11 @@
 cd info
 
 Write-Output 'building the image...'
-time {docker build -t batch-info .}
+time {
+    docker build `
+        --build-arg "WINDOWS_NANOSERVER_IMAGE=$((Get-WindowsContainers).nanoserver)" `
+        -t batch-info .
+}
 docker image ls batch-info
 docker history batch-info
 

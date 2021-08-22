@@ -1,5 +1,7 @@
 .vagrant/
 shared/
+obj/
+bin/
 tmp-*
 *.exe
 *.zip

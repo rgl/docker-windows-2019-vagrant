@@ -10,7 +10,12 @@ trap {
 
 # see WaitToKillServiceTimeout at https://technet.microsoft.com/en-us/library/cc976045.aspx
 Write-Host 'Maximum time [ms] that Windows waits before killing a service:'
-(Get-ItemProperty -Path HKLM:\SYSTEM\CurrentControlSet\Control -Name WaitToKillServiceTimeout).WaitToKillServiceTimeout
+$waitToKillServiceTimeoutItemProperty = Get-ItemProperty -Path HKLM:\SYSTEM\CurrentControlSet\Control -Name WaitToKillServiceTimeout -ErrorAction SilentlyContinue
+if ($waitToKillServiceTimeoutItemProperty) {
+    $waitToKillServiceTimeoutItemProperty.WaitToKillServiceTimeout
+} else {
+    'unknown'
+}
 # see WaitToKillAppTimeout at https://technet.microsoft.com/en-us/library/cc978624.aspx
 # NB this overriddes HKCU:\Control Panel\Desktop
 if (!(Test-Path 'HKU:\.DEFAULT\Control Panel\Desktop')) {

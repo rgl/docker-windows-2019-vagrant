@@ -1,5 +1,8 @@
 # escape=`
-FROM powershell:6.2.3 as builder
+ARG BUILDER_IMAGE
+ARG BASE_IMAGE
+
+FROM ${BUILDER_IMAGE} AS builder
 SHELL ["pwsh.exe", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 RUN mkdir C:\build | Set-Location; `
     $url = 'https://github.com/rgl/graceful-terminating-console-application-windows/releases/download/v0.4.0/graceful-terminating-console-application-windows.zip'; `
@@ -16,7 +19,7 @@ RUN mkdir C:\build | Set-Location; `
     Write-Host 'Removing unneeded files...'; `
     Remove-Item graceful-terminating-console-application-windows.zip;
 
-FROM $BASEIMAGE
+FROM ${BASE_IMAGE}
 RUN mkdir C:\app C:\host
 COPY --from=builder C:\build\graceful-terminating-console-application-windows.exe C:\app
 VOLUME ["C:/host"]

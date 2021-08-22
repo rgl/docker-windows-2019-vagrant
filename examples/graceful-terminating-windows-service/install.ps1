@@ -45,7 +45,12 @@ Get-Service $serviceName | ForEach-Object {
 
 # see WaitToKillServiceTimeout at https://technet.microsoft.com/en-us/library/cc976045.aspx
 Write-Host 'Maximum time [ms] that Windows waits before killing a service:'
-(Get-ItemProperty -Path HKLM:\SYSTEM\CurrentControlSet\Control -Name WaitToKillServiceTimeout).WaitToKillServiceTimeout
+$waitToKillServiceTimeoutItemProperty = Get-ItemProperty -Path HKLM:\SYSTEM\CurrentControlSet\Control -Name WaitToKillServiceTimeout -ErrorAction SilentlyContinue
+if ($waitToKillServiceTimeoutItemProperty) {
+    $waitToKillServiceTimeoutItemProperty.WaitToKillServiceTimeout
+} else {
+    'unknown'
+}
 # TODO remove next line?
 # Set-ItemProperty -Path HKLM:\SYSTEM\CurrentControlSet\Control -Name WaitToKillServiceTimeout -Value '450000'
 

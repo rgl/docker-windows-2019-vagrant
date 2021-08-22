@@ -1,7 +1,10 @@
 # escape=`
-FROM powershell:6.2.3 AS builder
+ARG WINDOWS_NANOSERVER_IMAGE
+ARG POWERSHELL_IMAGE
+
+FROM ${POWERSHELL_IMAGE} AS builder
 SHELL ["pwsh.exe", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
-WORKDIR C:/Windows/TEMP
+WORKDIR C:/build
 RUN function Install-Artifact($url, $hash, $to) { `
         Write-Host ('Downloading {0}...' -f $url); `
         Invoke-WebRequest -Uri $url -OutFile artifact.zip; `
@@ -18,16 +21,16 @@ RUN function Install-Artifact($url, $hash, $to) { `
         Write-Host 'Done.'; `
     }; `
     Install-Artifact `
-        'https://dl.google.com/go/go1.13.1.windows-amd64.zip' `
-        '24cb08d369c1962cccacedc56fd79dc130f623b3b667a316554621ad6ac9b442' `
+        'https://golang.org/dl/go1.17.windows-amd64.zip' `
+        '2a18bd65583e221be8b9b7c2fbe3696c40f6e27c2df689bbdcc939d49651d151' `
         '.'; `
     Install-Artifact `
-        'https://github.com/git-for-windows/git/releases/download/v2.23.0.windows.1/MinGit-2.23.0-64-bit.zip' `
-        '8f65208f92c0b4c3ae4c0cf02d4b5f6791d539cd1a07b2df62b7116467724735' `
+        'https://github.com/git-for-windows/git/releases/download/v2.33.0.windows.1/MinGit-2.33.0-64-bit.zip' `
+        '220e4606ec857d44f0ce67610bd8194f1c3779fbf85c801e945842e6f1732bdc' `
         'git';
-RUN ./git/cmd/git config --file git/mingw64/etc/gitconfig core.autocrlf false;
+RUN ./git/cmd/git config --file git/etc/gitconfig core.autocrlf false
 
-FROM powershell:6.2.3
-COPY --from=builder C:/Windows/TEMP/go C:/go
-COPY --from=builder C:/Windows/TEMP/git C:/git
+FROM ${WINDOWS_NANOSERVER_IMAGE}
+COPY --from=builder C:/build/go C:/go
+COPY --from=builder C:/build/git C:/git
 ENV PATH='C:\Windows\System32;C:\Windows;C:\Program Files\PowerShell;C:\go\bin;C:\git\cmd'

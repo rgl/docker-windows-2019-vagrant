@@ -1,5 +1,8 @@
 # escape=`
-FROM powershell:6.2.3 as builder
+ARG BUILDER_IMAGE
+ARG BASE_IMAGE
+
+FROM ${BUILDER_IMAGE} AS builder
 SHELL ["pwsh.exe", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 RUN mkdir C:\build | Set-Location; `
     $url = 'https://github.com/rgl/graceful-terminating-windows-service/releases/download/v0.2.0/graceful-terminating-windows-service.zip'; `
@@ -16,7 +19,8 @@ RUN mkdir C:\build | Set-Location; `
     Write-Host 'Removing unneeded files...'; `
     Remove-Item graceful-terminating-windows-service.zip;
 
-FROM $BASEIMAGE
+FROM ${BASE_IMAGE}
+SHELL ["PowerShell.exe", "-ExecutionPolicy", "Bypass", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 RUN mkdir C:\app,C:\host | Out-Null
 COPY --from=builder C:\build\graceful-terminating-windows-service.exe C:\app
 WORKDIR /app
@@ -25,4 +29,4 @@ COPY entrypoint.ps1 ./
 USER ContainerAdministrator
 RUN ./install.ps1
 VOLUME ["c:/host"]
-ENTRYPOINT .\entrypoint.ps1
+ENTRYPOINT ./entrypoint.ps1

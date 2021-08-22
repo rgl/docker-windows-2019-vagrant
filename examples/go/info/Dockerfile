@@ -1,10 +1,12 @@
 # escape=`
-FROM golang:1.13.1 AS builder
+ARG WINDOWS_NANOSERVER_IMAGE
+
+FROM golang:1.17.0 AS builder
 WORKDIR /Users/ContainerUser/go/src/info
-COPY *.go ./
+COPY go.* *.go ./
 RUN go build
 
-FROM mcr.microsoft.com/windows/nanoserver:1809
+FROM ${WINDOWS_NANOSERVER_IMAGE}
 WORKDIR /app
 COPY --from=builder /Users/ContainerUser/go/src/info/info.exe ./
 ENTRYPOINT ["/app/info.exe"]

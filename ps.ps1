@@ -25,6 +25,40 @@ function Write-Title($title) {
     Write-Output "#`n# $title`n#"
 }
 
+# see https://github.com/microsoft/Windows-Containers
+# see https://blogs.technet.microsoft.com/virtualization/2018/10/01/incoming-tag-changes-for-containers-in-windows-server-2019/
+# see https://hub.docker.com/_/microsoft-windows-nanoserver
+# see https://hub.docker.com/_/microsoft-windows-servercore
+# see https://hub.docker.com/_/microsoft-windows
+# see https://mcr.microsoft.com/v2/windows/nanoserver/tags/list
+# see https://mcr.microsoft.com/v2/windows/servercore/tags/list
+# see https://mcr.microsoft.com/v2/windows/tags/list
+# see https://mcr.microsoft.com/v2/powershell/tags/list
+# see https://mcr.microsoft.com/v2/dotnet/sdk/tags/list
+# see https://mcr.microsoft.com/v2/dotnet/runtime/tags/list
+# see https://hub.docker.com/_/golang/
+# see https://docs.microsoft.com/en-us/windows/release-information/
+# see https://docs.microsoft.com/en-us/windows/release-health/windows-server-release-info
+# see Get-WindowsVersion at https://github.com/rgl/windows-vagrant/blob/master/example/summary.ps1
+function Get-WindowsContainers {
+    $currentVersionKey = Get-ItemProperty 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion'
+    $windowsBuildNumber = $currentVersionKey.CurrentBuildNumber
+    $windowsVersionTag = @{
+        '20348' = 'ltsc2022'    # Windows Server 2022 (21H2).
+        '17763' = '1809'        # Windows Server 2019 (1809).
+    }[$windowsBuildNumber]
+    @{
+        tag = $windowsVersionTag
+        nanoserver = "mcr.microsoft.com/windows/nanoserver`:$windowsVersionTag"
+        servercore = "mcr.microsoft.com/windows/servercore`:$windowsVersionTag"
+        windows = "mcr.microsoft.com/windows`:$windowsVersionTag"
+        powershellNanoserver = "mcr.microsoft.com/powershell:7.1.4-nanoserver-$windowsVersionTag"
+        golangNanoserver = "golang:1.17.0-nanoserver-$windowsVersionTag"
+        dotnetSdkNanoserver = "mcr.microsoft.com/dotnet/sdk:6.0-nanoserver-$windowsVersionTag"
+        dotnetRuntimeNanoserver = "mcr.microsoft.com/dotnet/runtime:6.0-nanoserver-$windowsVersionTag"
+    }
+}
+
 # wrap the choco command (to make sure this script aborts when it fails).
 function Start-Choco([string[]]$Arguments, [int[]]$SuccessExitCodes=@(0)) {
     $command, $commandArguments = $Arguments

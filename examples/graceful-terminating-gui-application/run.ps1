@@ -1,15 +1,8 @@
 @(
-    'mcr.microsoft.com/windows/nanoserver:1809'
-    'mcr.microsoft.com/windows/servercore:1809'
-    'mcr.microsoft.com/windows:1809'
+    (Get-WindowsContainers).nanoserver
+    (Get-WindowsContainers).servercore
+    (Get-WindowsContainers).windows
 ) | ForEach-Object {
-    Set-Content `
-        -Encoding utf8 `
-        -Path Dockerfile.tmp `
-        -Value (
-            (Get-Content -Raw Dockerfile) `
-                -replace 'FROM \$BASEIMAGE',"FROM $_"
-        )
     $title = "graceful-terminating-gui-application $_"
 
     $dataPath = 'C:\graceful-terminating-gui-application'
@@ -17,7 +10,12 @@
     Remove-Item -ErrorAction SilentlyContinue -Force "$dataPath\graceful-terminating-gui-application-windows.log"
 
     Write-Output 'building the container...'
-    time {docker build -t graceful-terminating-gui-application --file Dockerfile.tmp .}
+    time {
+        docker build `
+            --build-arg "BUILDER_IMAGE=$((Get-WindowsContainers).powershellNanoserver)" `
+            --build-arg "BASE_IMAGE=$_" `
+            -t graceful-terminating-gui-application .
+    }
 
     Write-Output 'getting the container history...'
     docker history graceful-terminating-gui-application
@@ -42,5 +40,3 @@
     Write-Output "getting the $title log file..."
     Get-Content "$dataPath\graceful-terminating-gui-application-windows.log"
 }
-
-Remove-Item -Force Dockerfile.tmp

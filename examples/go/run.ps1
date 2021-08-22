@@ -1,6 +1,10 @@
 Push-Location info
 Write-Output 'building the go-info image...'
-time {docker build -t go-info .}
+time {
+    docker build `
+        --build-arg "WINDOWS_NANOSERVER_IMAGE=$((Get-WindowsContainers).nanoserver)" `
+        -t go-info .
+}
 docker image ls go-info
 docker history go-info
 

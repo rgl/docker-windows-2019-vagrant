@@ -1,19 +1,16 @@
 @(
-    'powershell:6.2.3' # NB this is based on 'mcr.microsoft.com/windows/nanoserver:1809'
-    'mcr.microsoft.com/windows/servercore:1809'
-    'mcr.microsoft.com/windows:1809'
+    (Get-WindowsContainers).powershellNanoserver
+    (Get-WindowsContainers).servercore
+    (Get-WindowsContainers).windows
 ) | ForEach-Object {
-    $replacement = "FROM $_`nSHELL [`"PowerShell.exe`", `"-ExecutionPolicy`", `"Bypass`", `"-Command`", `"`$ErrorActionPreference = 'Stop'; `$ProgressPreference = 'SilentlyContinue';`"]"
+    $dockerfile = Get-Content -Raw Dockerfile
     if ($_ -match 'powershell:') {
-        $replacement = $replacement -creplace 'PowerShell','pwsh'
+        $dockerfile = $dockerfile -replace 'PowerShell','pwsh'
     }
     Set-Content `
         -Encoding utf8 `
         -Path Dockerfile.tmp `
-        -Value (
-            (Get-Content -Raw Dockerfile) `
-                -replace 'FROM \$BASEIMAGE',$replacement
-        )
+        -Value $dockerfile
     $title = "graceful-terminating-windows-service $_"
 
     $dataPath = 'C:\graceful-terminating-windows-service'
@@ -21,7 +18,16 @@
     Remove-Item -ErrorAction SilentlyContinue -Force "$dataPath\graceful-terminating-windows-service.log"
 
     Write-Output 'building the container...'
-    time {docker build -t graceful-terminating-windows-service --file Dockerfile.tmp .}
+    Write-Output "using BUILDER_IMAGE: $((Get-WindowsContainers).powershellNanoserver)"
+    Write-Output "using BASE_IMAGE: $_"
+    time {
+        docker build `
+            --build-arg "BUILDER_IMAGE=$((Get-WindowsContainers).powershellNanoserver)" `
+            --build-arg "BASE_IMAGE=$_" `
+            --file Dockerfile.tmp `
+            -t graceful-terminating-windows-service `
+            .
+    }
 
     Write-Output 'getting the container history...'
     docker history graceful-terminating-windows-service
@@ -41,5 +47,3 @@
     Write-Output "getting the $title log file..."
     Get-Content "$dataPath\graceful-terminating-windows-service.log"
 }
-
-Remove-Item -Force Dockerfile.tmp
