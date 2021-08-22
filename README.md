@@ -2,6 +2,8 @@
 
 This is a Docker on Windows Server 2019 (1809) Vagrant environment for playing with Windows containers.
 
+For Windows Server 2022 (21H2) see the [rgl/docker-windows-2022-vagrant](https://github.com/rgl/docker-windows-2022-vagrant) repository.
+
 # Usage
 
 Install the [Base Windows Server 2019 Box](https://github.com/rgl/windows-vagrant).
