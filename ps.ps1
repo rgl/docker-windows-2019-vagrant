@@ -51,7 +51,9 @@ function Get-WindowsContainers {
         tag = $windowsVersionTag
         nanoserver = "mcr.microsoft.com/windows/nanoserver`:$windowsVersionTag"
         servercore = "mcr.microsoft.com/windows/servercore`:$windowsVersionTag"
-        windows = "mcr.microsoft.com/windows`:$windowsVersionTag"
+        # windows container image is not yet available for ltsc2022.
+        # see https://github.com/microsoft/Windows-Containers/issues/150
+        windows = if ($windowsVersionTag -ne 'ltsc2022') {"mcr.microsoft.com/windows`:$windowsVersionTag"} else {$null}
         powershellNanoserver = "mcr.microsoft.com/powershell:7.1.4-nanoserver-$windowsVersionTag"
         golangNanoserver = "golang:1.17.0-nanoserver-$windowsVersionTag"
         dotnetSdkNanoserver = "mcr.microsoft.com/dotnet/sdk:6.0-nanoserver-$windowsVersionTag"

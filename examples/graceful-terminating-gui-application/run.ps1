@@ -2,7 +2,7 @@
     (Get-WindowsContainers).nanoserver
     (Get-WindowsContainers).servercore
     (Get-WindowsContainers).windows
-) | ForEach-Object {
+) | Where-Object {$_} | ForEach-Object {
     $title = "graceful-terminating-gui-application $_"
 
     $dataPath = 'C:\graceful-terminating-gui-application'
