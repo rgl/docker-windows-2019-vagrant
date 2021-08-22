@@ -22,8 +22,6 @@ At the end of the provision the [examples](examples/) are run.
 
 The Docker Engine API endpoint is available at http://10.0.0.3:2375.
 
-[Windows Admin Center](https://docs.microsoft.com/en-us/windows-server/manage/windows-admin-center/overview) is available at https://10.0.0.3:8443.
-
 # Graceful Container Shutdown
 
 **Windows containers cannot be gracefully shutdown** because they are forcefully terminated after a while. Check the [moby issue 25982](https://github.com/moby/moby/issues/25982) for progress.
