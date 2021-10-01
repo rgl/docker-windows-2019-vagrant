@@ -1,5 +1,5 @@
 Write-Output 'building the golang image...'
-$tag = 'golang:1.17.0'
+$tag = 'golang:1.17.1'
 time {
     docker build `
         --build-arg "WINDOWS_NANOSERVER_IMAGE=$((Get-WindowsContainers).nanoserver)" `

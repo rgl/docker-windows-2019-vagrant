@@ -55,7 +55,7 @@ function Get-WindowsContainers {
         # see https://github.com/microsoft/Windows-Containers/issues/150
         windows = if ($windowsVersionTag -ne 'ltsc2022') {"mcr.microsoft.com/windows`:$windowsVersionTag"} else {$null}
         powershellNanoserver = "mcr.microsoft.com/powershell:7.1.4-nanoserver-$windowsVersionTag"
-        golangNanoserver = "golang:1.17.0-nanoserver-$windowsVersionTag"
+        golangNanoserver = "golang:1.17.1-nanoserver-$windowsVersionTag"
         dotnetSdkNanoserver = "mcr.microsoft.com/dotnet/sdk:6.0-nanoserver-$windowsVersionTag"
         dotnetRuntimeNanoserver = "mcr.microsoft.com/dotnet/runtime:6.0-nanoserver-$windowsVersionTag"
     }

@@ -1,7 +1,7 @@
 # escape=`
 ARG WINDOWS_NANOSERVER_IMAGE
 
-FROM golang:1.17.0 AS builder
+FROM golang:1.17.1 AS builder
 WORKDIR /Users/ContainerUser/go/src/info
 COPY go.* *.go ./
 RUN go build

@@ -66,7 +66,7 @@ csharp-info                                latest                  fe1915293866 
 powershell-info                            latest                  5d26f5f44c57   About an hour ago   517MB
 batch-info                                 latest                  abacf01de2cf   About an hour ago   257MB
 busybox                                    latest                  232db8dcfdb7   About an hour ago   258MB
-golang                                     1.17.0                  51ee2ad1638c   About an hour ago   742MB
+golang                                     1.17.1                  51ee2ad1638c   About an hour ago   742MB
 mcr.microsoft.com/powershell               7.1.4-nanoserver-1809   b0d64fe83110   3 days ago          513MB
 mcr.microsoft.com/dotnet/sdk               6.0-nanoserver-1809     27b657c80c01   11 days ago         967MB
 mcr.microsoft.com/dotnet/runtime           6.0-nanoserver-1809     35e027807a25   11 days ago         329MB
