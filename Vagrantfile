@@ -25,6 +25,7 @@ Vagrant.configure("2") do |config|
   config.vm.provision "reload"
   config.vm.provision "shell", path: "ps.ps1", args: "provision-chocolatey.ps1"
   config.vm.provision "shell", path: "ps.ps1", args: "provision-base.ps1"
+  config.vm.provision "shell", path: "ps.ps1", args: "provision-git.ps1"
   config.vm.provision "shell", path: "ps.ps1", args: "provision-docker-ce.ps1"
   config.vm.provision "shell", path: "ps.ps1", args: "provision-docker-reg.ps1"
   config.vm.provision "shell", path: "ps.ps1", args: "images/golang/build.ps1"
