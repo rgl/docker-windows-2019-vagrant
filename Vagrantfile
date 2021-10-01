@@ -21,7 +21,6 @@ Vagrant.configure("2") do |config|
 
   config.vm.network "private_network", ip: "10.0.0.3", libvirt__forward_mode: "route", libvirt__dhcp_enabled: false
 
-  config.vm.provision "shell", path: "ps.ps1", args: "provision-hyper-v-feature.ps1"
   config.vm.provision "shell", path: "ps.ps1", args: "provision-containers-feature.ps1"
   config.vm.provision "reload"
   config.vm.provision "shell", path: "ps.ps1", args: "provision-chocolatey.ps1"
