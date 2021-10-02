@@ -26,12 +26,15 @@ function Write-Title($title) {
 }
 
 # see https://github.com/microsoft/Windows-Containers
+# see https://techcommunity.microsoft.com/t5/containers/announcing-a-new-windows-server-container-image-preview/ba-p/2304897
 # see https://blogs.technet.microsoft.com/virtualization/2018/10/01/incoming-tag-changes-for-containers-in-windows-server-2019/
 # see https://hub.docker.com/_/microsoft-windows-nanoserver
 # see https://hub.docker.com/_/microsoft-windows-servercore
+# see https://hub.docker.com/_/microsoft-windows-server
 # see https://hub.docker.com/_/microsoft-windows
 # see https://mcr.microsoft.com/v2/windows/nanoserver/tags/list
 # see https://mcr.microsoft.com/v2/windows/servercore/tags/list
+# see https://mcr.microsoft.com/v2/windows/server/tags/list
 # see https://mcr.microsoft.com/v2/windows/tags/list
 # see https://mcr.microsoft.com/v2/powershell/tags/list
 # see https://mcr.microsoft.com/v2/dotnet/sdk/tags/list
@@ -51,7 +54,11 @@ function Get-WindowsContainers {
         tag = $windowsVersionTag
         nanoserver = "mcr.microsoft.com/windows/nanoserver`:$windowsVersionTag"
         servercore = "mcr.microsoft.com/windows/servercore`:$windowsVersionTag"
-        windows = if ($windowsVersionTag -ne '1809') {"mcr.microsoft.com/windows/server`:$windowsVersionTag"} else {"mcr.microsoft.com/windows`:$windowsVersionTag"}
+        windows = if ($windowsBuildNumber -ge 20348) {
+            "mcr.microsoft.com/windows/server`:$windowsVersionTag"
+        } else {
+            "mcr.microsoft.com/windows`:$windowsVersionTag"
+        }
         powershellNanoserver = "mcr.microsoft.com/powershell:7.1.4-nanoserver-$windowsVersionTag"
         golangNanoserver = "golang:1.17.1-nanoserver-$windowsVersionTag"
         dotnetSdkNanoserver = "mcr.microsoft.com/dotnet/sdk:6.0-nanoserver-$windowsVersionTag"
