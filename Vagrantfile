@@ -7,10 +7,10 @@ Vagrant.configure("2") do |config|
     lv.cpu_mode = "host-passthrough"
     lv.nested = false
     lv.keymap = "pt"
-    config.vm.synced_folder '.', '/vagrant', type: 'rsync', rsync__exclude: [
-      '.vagrant/',
-      '.git/',
-      '*.box']
+    config.vm.synced_folder ".", "/vagrant", type: "rsync", rsync__exclude: [
+      ".vagrant/",
+      ".git/",
+      "*.box"]
   end
 
   config.vm.provider "virtualbox" do |vb|
