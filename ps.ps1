@@ -59,7 +59,7 @@ function Get-WindowsContainers {
         } else {
             "mcr.microsoft.com/windows`:$windowsVersionTag"
         }
-        powershellNanoserver = "mcr.microsoft.com/powershell:7.1.4-nanoserver-$windowsVersionTag"
+        powershellNanoserver = "mcr.microsoft.com/powershell:7.2-nanoserver-$windowsVersionTag"
         golangNanoserver = "golang:1.18.4-nanoserver-$windowsVersionTag"
         dotnetSdkNanoserver = "mcr.microsoft.com/dotnet/sdk:6.0-nanoserver-$windowsVersionTag"
         dotnetRuntimeNanoserver = "mcr.microsoft.com/dotnet/runtime:6.0-nanoserver-$windowsVersionTag"
