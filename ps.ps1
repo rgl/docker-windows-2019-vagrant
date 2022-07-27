@@ -54,7 +54,7 @@ function Get-WindowsContainers {
         tag = $windowsVersionTag
         nanoserver = "mcr.microsoft.com/windows/nanoserver`:$windowsVersionTag"
         servercore = "mcr.microsoft.com/windows/servercore`:$windowsVersionTag"
-        windows = if ($windowsBuildNumber -ge 20348) {
+        server = if ($windowsBuildNumber -ge 20348) {
             "mcr.microsoft.com/windows/server`:$windowsVersionTag"
         } else {
             "mcr.microsoft.com/windows`:$windowsVersionTag"

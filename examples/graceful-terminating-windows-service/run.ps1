@@ -1,7 +1,7 @@
 @(
     (Get-WindowsContainers).powershellNanoserver
     (Get-WindowsContainers).servercore
-    (Get-WindowsContainers).windows
+    (Get-WindowsContainers).server
 ) | Where-Object {$_} | ForEach-Object {
     $dockerfile = Get-Content -Raw Dockerfile
     if ($_ -match 'powershell:') {

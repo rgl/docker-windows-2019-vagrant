@@ -1,7 +1,7 @@
 @(
     (Get-WindowsContainers).nanoserver
     (Get-WindowsContainers).servercore
-    (Get-WindowsContainers).windows
+    (Get-WindowsContainers).server
 ) | Where-Object {$_} | ForEach-Object {
     $title = "graceful-terminating-console-application $_"
 
