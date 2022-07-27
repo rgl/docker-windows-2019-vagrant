@@ -19,7 +19,7 @@ Vagrant.configure("2") do |config|
     vb.cpus = 2
   end
 
-  config.vm.network "private_network", ip: "10.0.0.3", libvirt__forward_mode: "route", libvirt__dhcp_enabled: false
+  config.vm.network "private_network", ip: "10.0.0.3", libvirt__forward_mode: "none", libvirt__dhcp_enabled: false
 
   config.vm.provision "shell", path: "ps.ps1", args: "provision-containers-feature.ps1"
   config.vm.provision "reload"
