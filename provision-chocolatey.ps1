@@ -1,3 +1,3 @@
-$env:chocolateyVersion = '0.11.2'
+$env:chocolateyVersion = '1.1.0'
 
-iwr https://chocolatey.org/install.ps1 -UseBasicParsing | iex
+Invoke-Expression (New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1')
