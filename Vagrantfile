@@ -1,9 +1,12 @@
+VM_MEMORY_MB = 5*1024
+VM_CPUS = 4
+
 Vagrant.configure("2") do |config|
   config.vm.box = "windows-2019-amd64"
 
   config.vm.provider "libvirt" do |lv, config|
-    lv.memory = 5*1024
-    lv.cpus = 2
+    lv.memory = VM_MEMORY_MB
+    lv.cpus = VM_CPUS
     lv.cpu_mode = "host-passthrough"
     lv.nested = false
     lv.keymap = "pt"
@@ -15,8 +18,8 @@ Vagrant.configure("2") do |config|
 
   config.vm.provider "virtualbox" do |vb|
     vb.linked_clone = true
-    vb.memory = 5*1024
-    vb.cpus = 2
+    vb.memory = VM_MEMORY_MB
+    vb.cpus = VM_CPUS
   end
 
   config.vm.network "private_network", ip: "10.0.0.3", libvirt__forward_mode: "none", libvirt__dhcp_enabled: false
