@@ -3,5 +3,6 @@ shared/
 obj/
 bin/
 tmp-*
+secrets*
 *.exe
 *.zip
