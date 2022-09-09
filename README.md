@@ -60,19 +60,19 @@ This environment builds and uses the following images:
 
 ```
 REPOSITORY                                 TAG                     IMAGE ID       CREATED             SIZE
-busybox-info                               latest                  254560c85078   43 minutes ago      259MB
-go-info                                    latest                  70569b1b5592   44 minutes ago      260MB
-csharp-info                                latest                  6f3cbf471fad   44 minutes ago      331MB
-powershell-info                            latest                  bdfea2f6afea   46 minutes ago      554MB
-batch-info                                 latest                  b6deb4126926   46 minutes ago      258MB
-busybox                                    latest                  13b3cea36849   46 minutes ago      258MB
-golang                                     1.18.5                  2d6ee9764820   47 minutes ago      758MB
-mcr.microsoft.com/powershell               7.2-nanoserver-1809     9bd1349a432a   13 days ago         530MB
-mcr.microsoft.com/dotnet/sdk               6.0-nanoserver-1809     f39bade63efb   2 weeks ago         992MB
-mcr.microsoft.com/dotnet/runtime           6.0-nanoserver-1809     4182f7e66bea   2 weeks ago         330MB
-mcr.microsoft.com/windows                  1809                    b9dd4e6f78b6   2 weeks ago         14.9GB
-mcr.microsoft.com/windows/servercore       1809                    e6b07227af5c   2 weeks ago         5.59GB
-mcr.microsoft.com/windows/nanoserver       1809                    90d09aa6b182   2 weeks ago         258MB
+busybox-info                               latest                  2bf5e72aafe4   42 minutes ago      259MB
+go-info                                    latest                  644c8601f5e5   42 minutes ago      260MB
+csharp-info                                latest                  5f4038c15e58   43 minutes ago      331MB
+powershell-info                            latest                  558280d991cc   44 minutes ago      554MB
+batch-info                                 latest                  8b94396f136f   45 minutes ago      258MB
+busybox                                    latest                  0b904a5f2d77   45 minutes ago      258MB
+golang                                     1.19.1                  9dd9a279a9a9   45 minutes ago      788MB
+mcr.microsoft.com/powershell               7.2-nanoserver-1809     dc1b9f8b1e6d   8 days ago          530MB
+mcr.microsoft.com/dotnet/sdk               6.0-nanoserver-1809     187d361065f2   4 weeks ago         1GB
+mcr.microsoft.com/dotnet/runtime           6.0-nanoserver-1809     c5415eb49140   4 weeks ago         331MB
+mcr.microsoft.com/windows                  1809                    04a0d4a65546   4 weeks ago         15.8GB
+mcr.microsoft.com/windows/servercore       1809                    e795f3f8aa80   4 weeks ago         5.6GB
+mcr.microsoft.com/windows/nanoserver       1809                    5fa59fbac916   4 weeks ago         258MB
 ```
 
 # Troubleshoot
