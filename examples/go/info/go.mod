@@ -1,3 +1,3 @@
 module example.com/info
 
-go 1.18
+go 1.19
